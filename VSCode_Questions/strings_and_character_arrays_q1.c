@@ -1,0 +1,27 @@
+#include <stdio.h>
+int main() {
+    char line[10005];
+    if (fgets(line, sizeof(line), stdin) == NULL) {
+        return 0;
+    }
+    int vowels = 0, consonants = 0, digits = 0, spaces = 0;
+    for (int i = 0; line[i] != '\0'; i++) {
+        char ch = line[i];
+        if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
+            if (ch >= 'A' && ch <= 'Z') {
+                ch = ch + ('a' - 'A');
+            }
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                vowels++;
+            } else {
+                consonants++;
+            }
+        } else if (ch >= '0' && ch <= '9') {
+            digits++;
+        } else if (ch == ' ') {
+            spaces++;
+        }
+    }
+    printf("%d %d %d %d\n", vowels, consonants, digits, spaces);
+    return 0;
+}
